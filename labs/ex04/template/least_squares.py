@@ -6,7 +6,6 @@ Least Square
 
 import numpy as np
 
-
 def least_squares(y, tx):
     """Calculate the least squares solution.
        returns mse, and optimal weights.
@@ -23,8 +22,24 @@ def least_squares(y, tx):
     (array([ 0.21212121, -0.12121212]), 8.666684749742561e-33)
     """
     # ***************************************************
-    # COPY YOUR CODE FROM EX03 HERE
-    # least squares: TODO
-    # returns optimal weights, MSE
+    # Use normal equations: w = (X^T X)^(-1) X^T y
+    # For numerical stability, use np.linalg.solve instead of np.linalg.inv
+    
+    # Compute X^T X
+    tx = np.array(tx)
+    y = np.array(y)
+
+    gram_matrix = tx.T.dot(tx)
+    
+    # Compute X^T y
+    xy = tx.T.dot(y)
+    
+    # Solve the system (X^T X) w = X^T y
+    w = np.linalg.solve(gram_matrix, xy)
+    
+    # Calculate MSE
+    mse = compute_loss(y, tx, w)
+    
+    return w, mse
+    # returns w (optimal weights), mse (mean squared error)
     # ***************************************************
-    raise NotImplementedError

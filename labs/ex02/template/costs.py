@@ -17,6 +17,10 @@ def compute_loss(y, tx, w):
     """
     # ***************************************************
     # INSERT YOUR CODE HERE
-    # TODO: compute loss by MSE
-    # ***************************************************
-    raise NotImplementedError
+    mse = 0
+    N = len(y)
+    for n in range(len(y)):
+        mse += (y[n] - tx[n].dot(w))**2
+    mse = mse/(2*N)
+
+    return mse

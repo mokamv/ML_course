@@ -3,7 +3,6 @@
 
 import numpy as np
 
-
 def build_poly(x, degree):
     """polynomial basis functions for input data x, for j=0 up to j=degree.
 
@@ -19,9 +18,17 @@ def build_poly(x, degree):
            [1.  , 1.5 , 2.25]])
     """
     # ***************************************************
-    # COPY YOUR CODE FROM EX03 HERE
-    # polynomial basis function: TODO
+    # INSERT YOUR CODE HERE
+    # polynomial basis function:
     # this function should return the matrix formed
     # by applying the polynomial basis to the input data
+    phi = []
+    N = len(x)
+    for n in range(N):
+        poli = []
+        for i in range(degree+1):
+            poli.append(x[n]**i)
+        phi.append(poli)
+
+    return np.array(phi)
     # ***************************************************
-    raise NotImplementedError
