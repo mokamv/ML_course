@@ -38,7 +38,9 @@ def least_squares(y, tx):
     w = np.linalg.solve(gram_matrix, xy)
     
     # Calculate MSE
-    mse = compute_loss(y, tx, w)
+    mse = 0
+    for i in range (y.shape[0]):
+        mse += (y-tx.dot(w))**2
     
     return w, mse
     # returns w (optimal weights), mse (mean squared error)
